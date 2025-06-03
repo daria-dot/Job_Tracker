@@ -48,3 +48,6 @@ Job_Tracker/
 
 └── requirements.txt         # Lists all Python package dependencies
 
+The html formatting end result:
+
+<img width="1109" alt="Screenshot 2025-06-03 at 11 51 04" src="https://github.com/user-attachments/assets/87f7c075-537d-447f-a6a5-23652653101e" />
