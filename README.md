@@ -1,5 +1,6 @@
 # Job_Tracker
 A makefile that web-scrapes into SQLite databse, calling upon OpenAI API for automated summaries, and deploying locally with Flask
+
 Overview of the project:
 
 1. Scrape Job Postings: The system automatically fetches job data from online sources (used RemoteOK.com in this Python script). Call with make-scrape
