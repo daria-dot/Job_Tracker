@@ -25,14 +25,26 @@ Job_Tracker/
 ├── scripts/                 # Contains all Python backend logic
 
 │   ├── __init__.py          # (Empty file) Marks 'scripts' as a Python package
+
 │   ├── dashboard_app.py     # Main Flask application, defines DB model, web routes
+
 │   ├── db_enricher.py       # Summarizes job descriptions using AI
+
 │   ├── llm_utils.py         # Handles OpenAI API calls (for summarization)
+
 │   └── remoteok_scraper.py  # Fetches job data from online sources
+
 ├── templates/               # HTML templates for the web interface
+
 │   └── index.html           # Main dashboard UI to display jobs
+
 ├── .env                     # Stores environment variables (e.g., OPENAI_API_KEY)
+
 ├── .gitignore               # Tells Git which files/folders to ignore
+
 ├── config.py                # Application configuration settings (e.g., database URI)
+
 ├── Makefile                 # Automation script for common tasks (scrape, enrich, run, clean)
+
 └── requirements.txt         # Lists all Python package dependencies
+
