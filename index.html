@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0056b3; }
+        .job-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #fff; }
+        .job-card h3 { margin-top: 0; color: #333; }
+        .job-card p { margin: 5px 0; font-size: 0.9em; }
+        .job-card a { color: #007bff; text-decoration: none; }
+        .job-card a:hover { text-decoration: underline; }
+        .summary { font-style: italic; color: #555; border-left: 3px solid #007bff; padding-left: 10px; margin-top: 10px; }
+        .tags span { display: inline-block; background-color: #e2e2e2; border-radius: 3px; padding: 2px 8px; margin-right: 5px; margin-bottom: 5px; font-size: 0.8em; }
+        .header-actions { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .header-actions h1 { margin: 0; }
+        .header-actions button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-left: 10px; /* Space between buttons */
+            margin-top: 10px; /* For smaller screens */
+        }
+        .header-actions button:hover {
+            background-color: #218838;
+        }
+        .header-actions .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .header-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-actions .button-group {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .header-actions button {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-actions">
+            <h1>Job Tracker Dashboard</h1>
+            <div class="button-group">
+                <button onclick="location.href='/run-scrape'">Scrape & Summarize New Jobs</button>
+            </div>
+        </div>
+
+        <h2>Latest Jobs</h2>
+        {% if jobs %}
+            {% for job in jobs %}
+            <div class="job-card">
+                <h3><a href="{{ job.url }}" target="_blank">{{ job.position }}</a></h3>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Date Posted:</strong> {{ job.date_posted }}</p>
+                {% if job.job_type %}
+                <p class="tags">
+                    <strong>Type:</strong> <span>{{ job.job_type }}</span>
+                </p>
+                {% endif %}
+                {% if job.location %}
+                <p class="tags">
+                    <strong>Location:</strong> <span>{{ job.location }}</span>
+                </p>
+                {% endif %}
+                {% if job.summary %}
+                <div class="summary">
+                    <p><strong>Summary:</strong> {{ job.summary }}</p>
+                </div>
+                {% else %}
+                <p class="summary"><em>Summary not available yet.</em></p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No jobs found. Run the scraper to populate the database.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
